@@ -2,12 +2,16 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <string>
 
 using std::cout;
 using std::ifstream;
 using std::istringstream;
 using std::string;
 using std::vector;
+
+enum class State {kEmpty, kObstacle};
+
 
 vector<int> ParseLine(string line) {
 
@@ -33,6 +37,13 @@ vector<vector<int>> ReadBoardFile(string path) {
         }
     }
     return board;
+}
+
+string CellString(State cell){
+    switch(cell){
+        case State::kObstacle: return "⛰️   ";
+        default: return "0  ";
+    }
 }
 
 void PrintBoard(const vector<vector<int>> board) {
