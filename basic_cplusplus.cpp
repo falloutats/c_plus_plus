@@ -2,7 +2,6 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <string>
 
 using std::cout;
 using std::ifstream;
@@ -52,6 +51,16 @@ string CellString(State cell){
     }
 }
 
+vector<vector<State>> Search(vector<vector<State>> grid, int start[2], int goal[2]){
+    cout << "No path found" << "\n";
+    return vector<vector<State>> {};
+}
+
+int Heuristic(int x1, int x2, int y1, int y2){
+
+    return abs(x2 - x1) + abs(y2 - y1);
+}
+
 void PrintBoard(const vector<vector<State>> board) {
 
     for (int i = 0; i < board.size(); i++) {
@@ -64,6 +73,12 @@ void PrintBoard(const vector<vector<State>> board) {
 
 
 int main() {
-    auto holder = ReadBoardFile("/Users/fallout/CLionProjects/untitled2/board");
-    PrintBoard(holder);
+    int start[2] {1,2};
+    int goal[2]{4,5};
+    auto board = ReadBoardFile("/Users/fallout/CLionProjects/untitled2/board");
+    auto solution = Search(board, start, goal);
+    PrintBoard(board);
+
+
+
 }
